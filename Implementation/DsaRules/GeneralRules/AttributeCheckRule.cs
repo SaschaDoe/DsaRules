@@ -24,7 +24,7 @@ namespace DsaRules.GeneralRules
             
             if (diceResult == 1)
             {
-                resultType=RoleType.EpicSuccess;
+                resultType = RoleType.EpicSuccess;
             }
             
             if (diceResult == 20)

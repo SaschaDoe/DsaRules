@@ -15,6 +15,8 @@ namespace DsaRulesTests
     }
 
     [TestClass]
+    //https://www.ulisses-regelwiki.de/checks.html
+    //https://www.ulisses-regelwiki.de/GR_Proben.html
     public class GameMasterRoleForTests
     {
         [DataTestMethod]
