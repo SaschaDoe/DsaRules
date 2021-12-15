@@ -10,18 +10,18 @@ namespace DsaRulesTests
     public class FakeDice : Dice
     {
         private int _count;
-        public int ReturnValue { get; set; }
-        public int SecondReturnValue { get; set; }
+        public int FirstRoleResult { get; set; }
+        public int SecondRoleResult { get; set; }
         public override int Role()
         {
             _count++;
             if(_count == 1)
             {
-                return ReturnValue;
+                return FirstRoleResult;
             }
             else
             {
-                return SecondReturnValue;
+                return SecondRoleResult;
             }
         }
     }

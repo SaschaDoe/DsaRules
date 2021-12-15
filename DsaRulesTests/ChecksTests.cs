@@ -21,7 +21,7 @@ namespace DsaRulesTests
         public void RoleFor_FirstDiceRole(int returnValue, int courage, int result, RoleResultType expectedRoleType)
         {
             var fakeDice = new FakeDice();
-            fakeDice.ReturnValue = returnValue;
+            fakeDice.FirstRoleResult = returnValue;
             var gameMaster = new GameMaster(fakeDice,fakeDice);
             var character = new Character().WithCourage(courage);
 
@@ -59,7 +59,7 @@ namespace DsaRulesTests
         public void RoleFor_FirstDiceRole_WithModificator(int returnValue, int courage, int result, RoleResultType expectedRoleType, int modificator)
         {
             var fakeDice = new FakeDice();
-            fakeDice.ReturnValue = returnValue;
+            fakeDice.FirstRoleResult = returnValue;
             var gameMaster = new GameMaster(fakeDice, fakeDice);
             var character = new Character().WithCourage(courage);
 

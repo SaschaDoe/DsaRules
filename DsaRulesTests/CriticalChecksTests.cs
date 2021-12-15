@@ -11,17 +11,17 @@ namespace DsaRulesTests
         /// <summary>
         /// Testing the full attribute check which consists sometimes out of two roles when a critical fail or success is there 
         /// </summary>
-        /// <param name="diceRole"></param>
+        /// <param name="firstDiceRole"></param>
         /// <param name="courageValue"></param>
         /// <param name="secondDiceRole"></param>
         /// <param name="expectedRoleType"></param>
         [DataTestMethod]
         [DynamicData(nameof(DiceRolesTestInput), DynamicDataSourceType.Property)]
-        public void RoleFor_CriticalTests(int diceRole, int courageValue, int secondDiceRole, RoleResultType expectedRoleType)
+        public void RoleFor_CriticalTests(int firstDiceRole, int courageValue, int secondDiceRole, RoleResultType expectedRoleType)
         {
             var fakeDice = new FakeDice();
-            fakeDice.ReturnValue = diceRole;
-            fakeDice.SecondReturnValue = secondDiceRole;
+            fakeDice.FirstRoleResult = firstDiceRole;
+            fakeDice.SecondRoleResult = secondDiceRole;
             var gameMaster = new GameMaster(fakeDice, fakeDice);
             var character = new Character().WithCourage(courageValue);
 
