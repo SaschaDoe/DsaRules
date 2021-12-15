@@ -8,6 +8,13 @@ namespace DsaRules
 {
     public enum Attributes
     {
-        Courage
+        Courage,
+        Sagacity,
+        Intuition,
+        Charisma,
+        Dexterity,
+        Agility,
+        Constitution,
+        Strength
     }
 }

@@ -11,6 +11,12 @@ namespace DsaRules
         private int _numberOfSites;
         private Random _random;
 
+        public int NumberOfSites
+        {
+            get { return _numberOfSites; }
+            protected set { _numberOfSites = value; }
+        }
+
         public Dice()
         {
             _random = new Random();
@@ -20,6 +26,20 @@ namespace DsaRules
         {
             var dice = new Dice();
             dice._numberOfSites = numberOfSites;
+            return dice;
+        }
+
+        public Dice D20()
+        {
+            var dice = new Dice();
+            dice._numberOfSites = 20;
+            return dice;
+        }
+
+        public Dice D6()
+        {
+            var dice = new Dice();
+            dice._numberOfSites = 6;
             return dice;
         }
 

@@ -1,5 +1,6 @@
 using DsaRules;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 
 namespace DsaRulesTests
@@ -18,7 +19,11 @@ namespace DsaRulesTests
         /// <param name="expectedRoleType"></param>
         [DataTestMethod]
         [DynamicData(nameof(FirstDiceRoleInput), DynamicDataSourceType.Property)]
-        public void RoleFor_FirstDiceRole(int returnValue, int courage, int result, RoleResultType expectedRoleType)
+        public void RoleFor_FirstDiceRole(
+            int returnValue, 
+            int courage,
+            int result, 
+            RoleResultType expectedRoleType)
         {
             var fakeDice = new FakeDice();
             fakeDice.FirstRoleResult = returnValue;
@@ -56,7 +61,12 @@ namespace DsaRulesTests
         /// <param name="modificator"></param>
         [DataTestMethod]
         [DynamicData(nameof(FirstDiceRoleWithModificatorInputs), DynamicDataSourceType.Property)]
-        public void RoleFor_FirstDiceRole_WithModificator(int returnValue, int courage, int result, RoleResultType expectedRoleType, int modificator)
+        public void RoleFor_FirstDiceRole_WithModificator(
+            int returnValue, 
+            int courage, 
+            int result, 
+            RoleResultType expectedRoleType, 
+            int modificator)
         {
             var fakeDice = new FakeDice();
             fakeDice.FirstRoleResult = returnValue;
@@ -77,5 +87,29 @@ namespace DsaRulesTests
                 yield return new object[] { 7, 7, -1, RoleResultType.Fail, -1};
             }
         }
+
+        [TestMethod]
+        public void RoleFor_ArgumentException_When_DiceIsNotD20()
+        {
+            var diceWithSixSites = new Dice().WithSites(6);
+            var gameMaster = new GameMaster(diceWithSixSites, diceWithSixSites);
+            var character = new Character().WithCourage(7);
+
+           Assert.ThrowsException<ArgumentException>(() => gameMaster.RoleFor(character, Attributes.Courage));
+        }
+
+        [TestMethod]
+        public void RoleFor_EffectiveAttributeUnderOne()
+        {
+            var fakeDice = new FakeDice();
+            fakeDice.FirstRoleResult = 6;
+            var gameMaster = new GameMaster(fakeDice, fakeDice);
+            var character = new Character().WithCourage(7);
+
+            var check = gameMaster.RoleFor(character, Attributes.Courage, -7);
+
+            Assert.AreEqual(0, check.RoleHistory.Count);
+        }
+
     }
 }

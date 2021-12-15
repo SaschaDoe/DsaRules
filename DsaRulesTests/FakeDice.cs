@@ -9,6 +9,10 @@ namespace DsaRulesTests
 {
     public class FakeDice : Dice
     {
+        public FakeDice()
+        {
+            NumberOfSites = 20;
+        }
         private int _count;
         public int FirstRoleResult { get; set; }
         public int SecondRoleResult { get; set; }

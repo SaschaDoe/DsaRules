@@ -21,8 +21,7 @@ namespace DsaRules
 
         public Check RoleFor(Character character, Attributes attribute, int modificator = 0)
         {
-            
-            var check = AttributeCheckRule.AttributeCheck(attribute, character, _twentySited, modificator); 
+            var check = AttributeCheckRule.AttributeCheck(character.GetAttributeValue(attribute), _twentySited, modificator); 
 
             return check;
         }
