@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DsaRules
 {
-    public enum Attribute
+    public enum Attributes
     {
         Courage
     }

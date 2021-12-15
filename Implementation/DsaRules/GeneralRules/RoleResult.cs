@@ -9,9 +9,9 @@ namespace DsaRules
     public class RoleResult
     {
         public int Result { get;private set; }
-        public RoleType Type { get;private set; }
+        public RoleResultType Type { get; private set; }
 
-        public RoleResult(int result, RoleType tpye)
+        public RoleResult(int result, RoleResultType tpye)
         {
             Result = result;
             Type = tpye;

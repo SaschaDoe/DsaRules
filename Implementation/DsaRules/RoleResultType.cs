@@ -1,10 +1,12 @@
 ﻿namespace DsaRules
 {
-    public enum RoleType
+    public enum RoleResultType
     {
         EpicSuccess,
         EpicFail,
         Success,
         Fail,
+        BeforeSuccessConfirmation,
+        BeforeFailConfirmation,
     }
 }

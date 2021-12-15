@@ -19,12 +19,14 @@ namespace DsaRules
         }
 
 
-        public RoleResult RoleFor(Character character, Attribute attribute, int modificator = 0)
+        public Check RoleFor(Character character, Attributes attribute, int modificator = 0)
         {
             
-            var roleResult = AttributeCheckRule.Check(attribute, character, _twentySited.Role(), modificator); 
+            var check = AttributeCheckRule.AttributeCheck(attribute, character, _twentySited, modificator); 
 
-            return roleResult;
+            return check;
         }
+
+        
     }
 }
