@@ -14,19 +14,51 @@ namespace DsaRulesTests
             NumberOfSites = 20;
         }
         private int _count;
+        private List<int> _diceRoles;
+
         public int FirstRoleResult { get; set; }
         public int SecondRoleResult { get; set; }
+
+        public int ThirdRoleResult { get; set; }
         public override int Role()
         {
-            _count++;
-            if(_count == 1)
+            if(_diceRoles == null)
             {
-                return FirstRoleResult;
+                _count++;
+                if (_count == 1)
+                {
+                    return FirstRoleResult;
+                }
+
+                if (_count == 2)
+                {
+                    return SecondRoleResult;
+                }
+                else
+                {
+                    return ThirdRoleResult;
+                }
             }
             else
             {
-                return SecondRoleResult;
+                var roleResult = 0;
+                if (_diceRoles.Count >= _count)
+                {
+                    roleResult = _diceRoles[_count];
+                    _count++;
+                }
+                else
+                {
+                    roleResult = _diceRoles.Last();
+                }
+                return roleResult;
             }
+           
+        }
+
+        internal void DiceRoles(List<int> diceRoles)
+        {
+            _diceRoles = diceRoles;
         }
     }
 }

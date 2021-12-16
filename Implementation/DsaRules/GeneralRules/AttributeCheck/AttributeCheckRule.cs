@@ -32,6 +32,7 @@ namespace DsaRules.GeneralRules
 
             var firstRoleResult = Check(effectiveAttributeValue, twentySitedDice);
             check.RoleHistory.Add(firstRoleResult);
+            check.CheckResultType = firstRoleResult.Type;
 
             if (firstRoleResult.Type == RoleResultType.BeforeFailConfirmation ||
                 firstRoleResult.Type == RoleResultType.BeforeSuccessConfirmation)
@@ -63,7 +64,8 @@ namespace DsaRules.GeneralRules
             if (firstRoleResult.Type == RoleResultType.BeforeFailConfirmation ||
                 secondRoleResult.Type == RoleResultType.BeforeFailConfirmation)
             {
-                if (secondRoleResult.Type == RoleResultType.Fail)
+                if (secondRoleResult.Type == RoleResultType.BeforeFailConfirmation ||
+                    secondRoleResult.Type == RoleResultType.Fail)
                 {
                     check.CheckResultType = RoleResultType.EpicFail;
                 }
@@ -80,27 +82,23 @@ namespace DsaRules.GeneralRules
 
             var resultedValue = attributeValue - diceResult;
 
-
-            var resultType = RoleResultType.Success;
-            if (resultedValue < 0)
-            {
-                resultType = RoleResultType.Fail;
-            }
-            
             if (diceResult == 1)
             {
-                resultType = RoleResultType.BeforeSuccessConfirmation;
-                
+                return new RoleResult(resultedValue, RoleResultType.BeforeSuccessConfirmation);
+
             }
-            
+
             if (diceResult == 20)
             {
-                resultType = RoleResultType.BeforeFailConfirmation;
+                return new RoleResult(resultedValue, RoleResultType.BeforeFailConfirmation);
             }
 
-            var roleResult = new RoleResult(resultedValue, resultType);
+            if (resultedValue < 0)
+            {
+                return new RoleResult(resultedValue, RoleResultType.Fail);
+            }
 
-            return roleResult;
+            return new RoleResult(resultedValue, RoleResultType.Success);
         }
     }
 }

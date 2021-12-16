@@ -1,4 +1,6 @@
-﻿namespace DsaRules
+﻿using DsaRules.GeneralRules;
+
+namespace DsaRules
 {
     public class Character
     {
@@ -15,6 +17,8 @@
         /// Represents general knowledge, the ability to think logically and analytically, and the quality of the hero’s memory.
         /// </summary>
         public int Sagacity { get; private set; }
+
+        
 
         /// <summary>
         /// Represents the hero’s hunches and level of empathy, and also shows how well the character can cope with stress and make the right decisions in such situations. 
@@ -147,6 +151,6 @@
 
         #endregion
 
-
+        
     }
 }

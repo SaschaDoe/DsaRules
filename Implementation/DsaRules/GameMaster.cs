@@ -1,4 +1,5 @@
 ﻿using DsaRules.GeneralRules;
+using DsaRules.GeneralRules.AttributeCheck;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,5 @@ namespace DsaRules
 
             return check;
         }
-
-        
     }
 }
